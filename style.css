@@ -1309,7 +1309,7 @@ body {
 
 /* Portfolio Extensions */
 .sdetail-portfolio {
-  grid-column: 1 / -1; 
+  grid-column: 1 / -1;
   /* Also spanning full width */
 }
 
@@ -1353,7 +1353,7 @@ body {
   width: 64px;
   height: 64px;
   background: rgba(0, 0, 0, 0.6);
-  border: 2px solid rgba(255,255,255,0.8);
+  border: 2px solid rgba(255, 255, 255, 0.8);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -1383,6 +1383,7 @@ body {
 .short-wrapper.playing {
   cursor: default;
 }
+
 .short-wrapper.playing:hover {
   transform: none;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -2855,4 +2856,107 @@ body {
 
 .delay-500 {
   transition-delay: 500ms;
+}
+
+/* ========== 404 PAGE STYLING ========== */
+.page-404 {
+  background: radial-gradient(circle at center, #E8F2FA 0%, #F5F9FC 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.error-404-image {
+  width: 100%;
+  max-width: min(90vw, 1000px);
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 5vh;
+  position: relative;
+  z-index: 10;
+}
+
+.not-found-wrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  /* Takes vertical space pushing footer down */
+  padding-bottom: 10vh;
+}
+
+
+.not-found-text {
+  font-family: var(--font-heading);
+  font-size: min(4vw, 32px);
+  font-weight: 600;
+  color: #339dff;
+  margin-top: 10px;
+  letter-spacing: -0.5px;
+  text-shadow: 0 4px 10px rgba(255, 255, 255, 0.8);
+}
+
+.bottom-elements {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 30px 40px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.social-links-minimal {
+  display: flex;
+  gap: 20px;
+  pointer-events: auto;
+}
+
+.social-links-minimal a {
+  color: #333;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links-minimal a:hover {
+  color: var(--blue-primary);
+  transform: translateY(-2px);
+}
+
+.social-links-minimal a svg {
+  width: 100%;
+  height: 100%;
+}
+
+.star-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}
+
+@media (max-width: 900px) {
+  .bottom-elements {
+    padding: 20px 24px;
+  }
+  
+  .error-404-image {
+    width: 150vw;
+    max-width: none;
+    margin-bottom: 2vh;
+  }
 }
