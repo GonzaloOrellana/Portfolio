@@ -93,11 +93,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Project detail pages map to the "proyectos" nav item
     const projectDetailPages = ['detalle-churn', 'detalle-aisha', 'detalle-pablo', 'detalle-zalostore', 'detalle-generador', 'detalle-inventario'];
 
-    function navigateTo(pageId) {
+    // Mapeo entre IDs del DOM y nombres legibles en la URL
+    const serviceMap = {
+        'servicio-diseno': 'diseno-ui-ux',
+        'servicio-web': 'desarrollo-web',
+        'servicio-video': 'edicion-de-video'
+    };
+
+    const pageMap = {
+        'diseno-ui-ux': 'servicio-diseno',
+        'desarrollo-web': 'servicio-web',
+        'edicion-de-video': 'servicio-video'
+    };
+
+    function navigateTo(pageId, pushToHistory = true) {
         const currentPage = document.querySelector('.page.active');
         const targetPage = document.getElementById(pageId);
 
         if (!targetPage || currentPage === targetPage) return;
+
+        // Actualizar URL sin recargar
+        if (pushToHistory) {
+            const url = new URL(window.location.href);
+            const serviceValue = serviceMap[pageId];
+
+            if (serviceValue) {
+                url.searchParams.set('servicio', serviceValue);
+            } else {
+                url.searchParams.delete('servicio');
+            }
+            window.history.pushState({ pageId }, '', url.pathname + url.search + url.hash);
+        }
 
         // Update nav active states (both desktop and mobile)
         let navHighlight = pageId;
@@ -143,6 +169,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Escuchar cambios en el historial (atrás/adelante)
+    window.addEventListener('popstate', (e) => {
+        const params = new URLSearchParams(window.location.search);
+        const serviceValue = params.get('servicio');
+
+        if (serviceValue && pageMap[serviceValue]) {
+            navigateTo(pageMap[serviceValue], false);
+        } else {
+            const hash = window.location.hash;
+            if (hash) {
+                const pageId = hash.substring(1);
+                const targetPage = document.getElementById(pageId);
+                if (targetPage && targetPage.classList.contains('page')) {
+                    navigateTo(pageId, false);
+                    return;
+                }
+            }
+            if (e.state && e.state.pageId) {
+                navigateTo(e.state.pageId, false);
+            } else {
+                navigateTo('home', false);
+            }
+        }
+    });
+
     // ========== PROJECT FILTERS ==========
     const filterPills = document.querySelectorAll('.filter-pill');
     const projectCards = document.querySelectorAll('.project-card');
@@ -170,52 +221,96 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ========== TESTIMONIALS DRAG TO SCROLL ==========
-    const slider = document.querySelector('.testimonials-slider');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
+    // Helper para inicializar arrastre con mouse (drag to scroll) en carruseles
+    function initDragToScroll(sliderEl) {
+        if (!sliderEl) return;
+        let isDown = false;
+        let startX;
+        let scrollLeft;
 
-    if (slider) {
-        // Activar cursor tipo mano
-        slider.style.cursor = 'grab';
+        sliderEl.style.cursor = 'grab';
 
-        slider.addEventListener('mousedown', (e) => {
+        sliderEl.addEventListener('mousedown', (e) => {
             isDown = true;
-            slider.style.cursor = 'grabbing';
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-            // Desactivar temporalmente el scroll-snap durante el arrastre manual
-            slider.style.scrollSnapType = 'none';
+            sliderEl.style.cursor = 'grabbing';
+            startX = e.pageX - sliderEl.offsetLeft;
+            scrollLeft = sliderEl.scrollLeft;
+            sliderEl.style.scrollSnapType = 'none';
         });
         
-        slider.addEventListener('mouseleave', () => {
+        sliderEl.addEventListener('mouseleave', () => {
             isDown = false;
-            slider.style.cursor = 'grab';
-            slider.style.scrollSnapType = 'x mandatory';
+            sliderEl.style.cursor = 'grab';
+            sliderEl.style.scrollSnapType = 'x mandatory';
         });
         
-        slider.addEventListener('mouseup', () => {
+        sliderEl.addEventListener('mouseup', () => {
             isDown = false;
-            slider.style.cursor = 'grab';
-            slider.style.scrollSnapType = 'x mandatory';
+            sliderEl.style.cursor = 'grab';
+            sliderEl.style.scrollSnapType = 'x mandatory';
         });
         
-        slider.addEventListener('mousemove', (e) => {
+        sliderEl.addEventListener('mousemove', (e) => {
             if (!isDown) return;
             e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
+            const x = e.pageX - sliderEl.offsetLeft;
             const walk = (x - startX) * 2; // Velocidad de arrastre
-            slider.scrollLeft = scrollLeft - walk;
+            sliderEl.scrollLeft = scrollLeft - walk;
+        });
+    }
+
+    // ========== CAROUSEL DRAG INITIALIZATIONS ==========
+    const testimonialsSlider = document.querySelector('.testimonials-slider');
+    initDragToScroll(testimonialsSlider);
+
+    const shortsSlider = document.querySelector('.shorts-slider');
+    initDragToScroll(shortsSlider);
+
+    // ========== YOUTUBE SHORTS CAROUSEL CONTROLS ==========
+    const shortsPrevBtn = document.querySelector('.shorts-control-btn.prev');
+    const shortsNextBtn = document.querySelector('.shorts-control-btn.next');
+
+    if (shortsSlider && shortsPrevBtn && shortsNextBtn) {
+        const getScrollAmount = () => {
+            const firstCard = shortsSlider.querySelector('.short-wrapper');
+            if (!firstCard) return 300;
+            const gap = parseInt(window.getComputedStyle(shortsSlider).gap) || 24;
+            return firstCard.offsetWidth + gap;
+        };
+
+        shortsPrevBtn.addEventListener('click', () => {
+            shortsSlider.scrollBy({
+                left: -getScrollAmount(),
+                behavior: 'smooth'
+            });
+        });
+
+        shortsNextBtn.addEventListener('click', () => {
+            shortsSlider.scrollBy({
+                left: getScrollAmount(),
+                behavior: 'smooth'
+            });
         });
     }
 
     // Handle initial route on page load (SPA behavior)
     function handleInitialRoute() {
-        const hash = window.location.hash;
-        if (hash) {
-            const pageId = hash.substring(1); // remove '#'
-            const targetPage = document.getElementById(pageId);
+        const params = new URLSearchParams(window.location.search);
+        const serviceValue = params.get('servicio');
+        
+        let initialPageId = null;
+        
+        if (serviceValue && pageMap[serviceValue]) {
+            initialPageId = pageMap[serviceValue];
+        } else {
+            const hash = window.location.hash;
+            if (hash) {
+                initialPageId = hash.substring(1);
+            }
+        }
+        
+        if (initialPageId) {
+            const targetPage = document.getElementById(initialPageId);
             
             // Check if it's a valid page mapped by ID
             if (targetPage && targetPage.classList.contains('page')) {
@@ -229,9 +324,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetPage.classList.add('active');
                 
                 // Update nav highlights
-                let navHighlight = pageId;
-                if (serviceDetailPages.includes(pageId)) navHighlight = 'servicios';
-                if (projectDetailPages.includes(pageId)) navHighlight = 'proyectos';
+                let navHighlight = initialPageId;
+                if (serviceDetailPages.includes(initialPageId)) navHighlight = 'servicios';
+                if (projectDetailPages.includes(initialPageId)) navHighlight = 'proyectos';
 
                 document.querySelectorAll('.nav-item').forEach(item => {
                     item.classList.remove('active');

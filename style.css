@@ -613,6 +613,7 @@ body {
   object-fit: cover;
   object-position: top;
   pointer-events: none;
+
 }
 
 @media (max-width: 1023px) {
@@ -1313,16 +1314,36 @@ body {
   /* Also spanning full width */
 }
 
-.shorts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
-  margin-top: 10px;
+.shorts-carousel {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.shorts-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: 24px;
+  width: 100%;
+  padding: 10px 0;
+  user-select: none;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.shorts-slider::-webkit-scrollbar {
+  display: none; /* Ocultar barra de desplazamiento */
 }
 
 .short-wrapper {
   position: relative;
-  width: 100%;
+  flex: 0 0 calc(33.333% - 16px);
+  scroll-snap-align: start;
   aspect-ratio: 9 / 16;
   border-radius: 20px;
   overflow: hidden;
@@ -1331,6 +1352,59 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+  .short-wrapper {
+    flex: 0 0 calc(50% - 12px); /* 2 videos en tablet */
+  }
+}
+
+@media (max-width: 600px) {
+  .short-wrapper {
+    flex: 0 0 calc(80% - 12px); /* 1.25 videos en celular para mostrar preview */
+  }
+}
+
+.shorts-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+  align-self: flex-end;
+}
+
+.shorts-control-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    -2px -2px 6px rgba(255, 255, 255, 0.8),
+    2px 2px 8px rgba(0, 0, 0, 0.05),
+    inset 0 2px 4px rgba(255, 255, 255, 0.4);
+  color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+
+.shorts-control-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--blue-primary);
+  transform: translateY(-2px);
+}
+
+.shorts-control-btn:active {
+  transform: scale(0.95);
+  box-shadow:
+    inset 2px 2px 5px rgba(0, 0, 0, 0.05),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.8);
 }
 
 .short-wrapper:hover {
@@ -2953,7 +3027,7 @@ body {
   .bottom-elements {
     padding: 20px 24px;
   }
-  
+
   .error-404-image {
     width: 150vw;
     max-width: none;
