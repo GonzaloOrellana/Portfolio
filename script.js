@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Service detail pages map to the "servicios" nav item
     const serviceDetailPages = ['servicio-diseno', 'servicio-web', 'servicio-video'];
     // Project detail pages map to the "proyectos" nav item
-    const projectDetailPages = ['detalle-churn', 'detalle-aisha', 'detalle-pablo', 'detalle-zalostore', 'detalle-generador', 'detalle-inventario'];
+    const projectDetailPages = ['detalle-churn', 'detalle-aisha', 'detalle-pablo', 'detalle-zalostore', 'detalle-generador', 'detalle-inventario', 'detalle-focus'];
 
     // Mapeo entre IDs del DOM y nombres legibles en la URL
     const serviceMap = {
