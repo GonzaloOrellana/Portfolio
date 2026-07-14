@@ -119,8 +119,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (serviceValue) {
                 url.searchParams.set('servicio', serviceValue);
+                url.hash = ''; // Limpiar hash para páginas de servicio
             } else {
                 url.searchParams.delete('servicio');
+                if (pageId !== 'home') {
+                    url.hash = pageId;
+                } else {
+                    url.hash = '';
+                }
             }
             window.history.pushState({ pageId }, '', url.pathname + url.search + url.hash);
         }
