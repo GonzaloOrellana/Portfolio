@@ -727,7 +727,7 @@ body {
 #detalle-zalostore.page,
 #detalle-generador.page,
 #detalle-inventario.page,
-#detalle-planner.page {
+#detalle-focus.page {
   overflow: hidden;
   /* Prevent full-page scrolling — scroll is handled internally by wrappers */
 }

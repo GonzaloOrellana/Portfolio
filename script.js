@@ -175,6 +175,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // ========== MAKE PROJECT CARDS CLICKABLE ==========
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('.project-arrow')) return;
+            
+            const detailBtn = card.querySelector('.project-detail-btn');
+            if (detailBtn && detailBtn.dataset.page) {
+                e.preventDefault();
+                navigateTo(detailBtn.dataset.page);
+            }
+        });
+    });
+
     // Escuchar cambios en el historial (atrás/adelante)
     window.addEventListener('popstate', (e) => {
         const params = new URLSearchParams(window.location.search);
