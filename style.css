@@ -662,9 +662,9 @@ body {
 
 .logo-carousel-track {
   display: inline-flex;
-  gap: 40px;
+  gap: 48px;
   animation: scroll-carousel 40s linear infinite;
-  padding-left: 40px;
+  padding-left: 48px;
   /* Essential match for smooth looping */
 }
 
@@ -687,19 +687,18 @@ body {
   font-weight: 700;
   font-size: 15px;
   letter-spacing: 0.3px;
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 10px 24px;
-  border-radius: 100px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: color 0.3s ease, transform 0.3s ease;
   user-select: none;
 }
 
 .carousel-item:hover {
   color: #111;
-  background: rgba(255, 255, 255, 0.9);
   transform: translateY(-2px);
 }
 
