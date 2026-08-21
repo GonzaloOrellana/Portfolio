@@ -106,6 +106,15 @@ document.addEventListener('DOMContentLoaded', () => {
         'edicion-de-video': 'servicio-video'
     };
 
+    function loadImagesForPage(page) {
+        if (!page) return;
+        const lazyImages = page.querySelectorAll('img[data-src]');
+        lazyImages.forEach(img => {
+            img.src = img.getAttribute('data-src');
+            img.removeAttribute('data-src');
+        });
+    }
+
     function navigateTo(pageId, pushToHistory = true) {
         const currentPage = document.querySelector('.page.active');
         const targetPage = document.getElementById(pageId);
@@ -154,6 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Scroll principal arriba
             window.scrollTo(0, 0);
             targetPage.scrollTop = 0;
+
+            // Cargar imágenes diferidas de la página destino
+            loadImagesForPage(targetPage);
 
             // Reiniciar animaciones solo para la nueva página
             initAnimations(targetPage);
@@ -360,8 +372,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
         
+        // Cargar imágenes diferidas de la página inicial activa
+        const activePage = document.querySelector('.page.active');
+        loadImagesForPage(activePage);
+
         // Initialize animations for the currently visible page
-        initAnimations(document.querySelector('.page.active'));
+        initAnimations(activePage);
     }
 
     handleInitialRoute();

@@ -2211,6 +2211,14 @@ body {
   box-shadow: 0 4px 10px rgba(0, 132, 255, 0.2);
 }
 
+.testimonial-author-avatar-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
 .testimonial-content {
   display: flex;
   flex-direction: column;
@@ -2654,6 +2662,28 @@ body {
 }
 
 @media (max-width: 768px) {
+  /* Mobile Performance: Optimización de GPU reduciendo blurs pesados (30px-50px) a 15px */
+  .navbar,
+  .mobile-menu,
+  .social-links,
+  .projects-scroll-area,
+  .project-card,
+  .services-scroll-area,
+  .service-card,
+  .sdetail-panel,
+  .pdetail-meta,
+  .about-profile,
+  .about-panel,
+  .testimonial-card,
+  .contact-form-container,
+  .contact-info-container,
+  .filter-pill,
+  .back-btn,
+  .shorts-control-btn {
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+
   .navbar {
     width: calc(100% - 24px);
     justify-content: space-between;
