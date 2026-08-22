@@ -807,44 +807,23 @@ body {
     0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-/* Projects Scroll Area */
+/* Projects Scroll Area - Clean transparent scroll container with smooth fade mask */
 .projects-scroll-area {
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-
-  /* Glass Container Box */
-  background: rgba(0, 0, 0, 0.03);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 32px;
-  box-shadow:
-    inset 0 4px 10px rgba(255, 255, 255, 0.3),
-    0 20px 40px rgba(0, 0, 0, 0.05);
-
-  /* Inner Spacing */
-  padding: 24px;
-  margin-bottom: 2vh;
+  padding: 8px 0 4vh;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 28px, black calc(100% - 24px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 28px, black calc(100% - 24px), transparent 100%);
 }
 
-/* Custom Scrollbar for Projects */
+/* Hide Scrollbar for Webkit */
 .projects-scroll-area::-webkit-scrollbar {
-  width: 6px;
-}
-
-.projects-scroll-area::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-.projects-scroll-area::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-}
-
-.projects-scroll-area::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.25);
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 /* Projects Grid */
@@ -869,8 +848,16 @@ body {
   box-shadow:
     inset 0 4px 6px rgba(255, 255, 255, 0.4),
     0 8px 24px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.4s ease, opacity 0.3s ease;
+  transition: box-shadow 0.4s ease, opacity 0.3s ease, transform 0.3s ease, background 0.4s ease;
   padding: 12px;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow:
+    inset 0 4px 8px rgba(255, 255, 255, 0.6),
+    0 16px 36px rgba(0, 0, 0, 0.08);
 }
 
 .project-image {
@@ -990,11 +977,12 @@ body {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 2vh 4vw;
+  padding: 3vh 4vw 4vh;
   display: flex;
   flex-direction: column;
-  gap: 2vh;
+  gap: 2.5vh;
   height: 100%;
+  justify-content: flex-start;
 }
 
 .services-header {
@@ -1002,7 +990,6 @@ body {
   align-items: center;
   gap: 16px;
   flex-shrink: 0;
-  padding-bottom: 2vh;
 }
 
 .services-title {
@@ -1013,46 +1000,6 @@ body {
   letter-spacing: -1.5px;
 }
 
-/* Services Scroll Area — Glass Container (mirrors projects-scroll-area) */
-.services-scroll-area {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-
-  /* Glass Container Box */
-  background: rgba(0, 0, 0, 0.03);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 32px;
-  box-shadow:
-    inset 0 4px 10px rgba(255, 255, 255, 0.3),
-    0 20px 40px rgba(0, 0, 0, 0.05);
-
-  /* Inner Spacing */
-  padding: 24px;
-  margin-bottom: 2vh;
-}
-
-/* Custom Scrollbar for Services */
-.services-scroll-area::-webkit-scrollbar {
-  width: 6px;
-}
-
-.services-scroll-area::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-.services-scroll-area::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-}
-
-.services-scroll-area::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.25);
-}
-
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1060,20 +1007,20 @@ body {
   align-content: start;
 }
 
-/* Service Card (Inspired by User Ref) */
+/* Service Card */
 .service-card {
   display: flex;
   flex-direction: column;
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 24px;
-  padding: 40px 32px;
+  padding: clamp(24px, 3.5vh, 36px) 28px;
   text-decoration: none;
   color: #111;
   box-shadow:
-    inset 0 4px 6px rgba(255, 255, 255, 0.4),
+    inset 0 4px 6px rgba(255, 255, 255, 0.5),
     0 8px 24px rgba(0, 0, 0, 0.04);
   transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
   position: relative;
@@ -1081,11 +1028,11 @@ body {
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.5);
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.6);
   box-shadow:
-    inset 0 4px 8px rgba(255, 255, 255, 0.6),
-    0 16px 40px rgba(0, 0, 0, 0.08);
+    inset 0 4px 8px rgba(255, 255, 255, 0.7),
+    0 16px 36px rgba(0, 0, 0, 0.08);
 }
 
 /* Inner glow effect on hover */
@@ -1108,9 +1055,9 @@ body {
 }
 
 .service-icon {
-  margin-bottom: 32px;
-  width: 48px;
-  height: 48px;
+  margin-bottom: clamp(16px, 2.5vh, 28px);
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -1119,21 +1066,21 @@ body {
 }
 
 .service-icon svg {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   filter: drop-shadow(0 4px 8px rgba(0, 132, 255, 0.2));
   transition: transform 0.3s ease;
 }
 
 .service-card:hover .service-icon svg {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 .service-name {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 24px;
-  margin-bottom: 16px;
+  font-size: clamp(20px, 1.8vw, 24px);
+  margin-bottom: 12px;
   color: #000;
   letter-spacing: -0.5px;
 }
@@ -1143,7 +1090,7 @@ body {
   font-size: 15px;
   line-height: 1.6;
   color: #555;
-  margin-bottom: 40px;
+  margin-bottom: clamp(20px, 3vh, 32px);
   flex: 1;
 }
 
@@ -1182,24 +1129,14 @@ body {
   gap: 32px;
   height: 100%;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .sdetail-wrapper::-webkit-scrollbar {
-  width: 6px;
-}
-
-.sdetail-wrapper::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-.sdetail-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-}
-
-.sdetail-wrapper::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.25);
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 /* Back Button */
@@ -1568,7 +1505,7 @@ body {
 
 /* ========== PROJECT DETAIL PAGES ========== */
 .pdetail-wrapper {
-  max-width: 1000px;
+  max-width: 800px;
   width: 100%;
   margin: 0 auto;
   padding: 2vh 4vw 6vh;
@@ -1577,24 +1514,14 @@ body {
   gap: 40px;
   height: 100%;
   overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .pdetail-wrapper::-webkit-scrollbar {
-  width: 6px;
-}
-
-.pdetail-wrapper::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-}
-
-.pdetail-wrapper::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 4px;
-}
-
-.pdetail-wrapper::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.25);
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 /* Hero Section */
@@ -1603,6 +1530,9 @@ body {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 32px;
   align-items: start;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .pdetail-hero-left {
@@ -1794,14 +1724,18 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin-top: 16px;
+  max-width: 800px;
+  width: 100%;
+  margin: 16px auto 0;
 }
 
 .pdetail-highlights-2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  margin-top: 16px;
+  max-width: 800px;
+  width: 100%;
+  margin: 16px auto 0;
 }
 
 .pdetail-highlight {
@@ -1828,6 +1762,91 @@ body {
   color: #555;
 }
 
+/* Tutorial Installation Cards */
+.pdetail-tutorial-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  width: 100%;
+  margin: 16px auto 32px;
+}
+
+.pdetail-tutorial-card {
+  display: grid;
+  grid-template-columns: 1fr 160px;
+  gap: 32px;
+  align-items: center;
+  padding: 28px 24px;
+}
+
+.pdetail-tutorial-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pdetail-tutorial-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pdetail-tutorial-header h4 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  color: #111;
+}
+
+.pdetail-tutorial-steps {
+  margin: 0;
+  padding-left: 20px;
+  line-height: 1.65;
+  font-size: 14.5px;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pdetail-tutorial-steps li strong {
+  color: #111;
+}
+
+.pdetail-tutorial-steps a {
+  color: var(--blue-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.pdetail-tutorial-steps a:hover {
+  text-decoration: underline;
+}
+
+.pdetail-tutorial-image {
+  width: 100%;
+  max-width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.02);
+  justify-self: center;
+}
+
+.pdetail-tutorial-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
 /* CTA Section */
 .pdetail-cta-section {
   text-align: center;
@@ -1839,7 +1858,9 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 16px;
-  margin-top: 24px;
+  max-width: 800px;
+  width: 100%;
+  margin: 24px auto 0;
 }
 
 .pdetail-cta-section h3 {
@@ -2666,15 +2687,14 @@ body {
   .navbar,
   .mobile-menu,
   .social-links,
-  .projects-scroll-area,
   .project-card,
-  .services-scroll-area,
   .service-card,
   .sdetail-panel,
   .pdetail-meta,
   .about-profile,
   .about-panel,
   .testimonial-card,
+  .pdetail-tutorial-card,
   .contact-form-container,
   .contact-info-container,
   .filter-pill,
@@ -2754,9 +2774,8 @@ body {
   }
 
   .projects-scroll-area {
-    padding: 16px;
-    border-radius: 20px;
-    margin-bottom: 2vh;
+    padding: 4px 0 24px;
+    margin-bottom: 0;
   }
 
   .projects-grid {
@@ -2787,7 +2806,8 @@ body {
 
   /* Services Mobile */
   .services-wrapper {
-    padding: 2vh 4vw;
+    padding: 2vh 4vw 4vh;
+    overflow-y: auto;
   }
 
   .services-header {
@@ -2796,12 +2816,6 @@ body {
 
   .services-title {
     font-size: 24px;
-  }
-
-  .services-scroll-area {
-    padding: 16px;
-    border-radius: 20px;
-    margin-bottom: 2vh;
   }
 
   .services-grid {
@@ -2920,6 +2934,17 @@ body {
   .pdetail-highlights,
   .pdetail-highlights-2 {
     grid-template-columns: 1fr;
+  }
+
+  .pdetail-tutorial-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px 20px;
+  }
+
+  .pdetail-tutorial-image {
+    max-width: 150px;
+    margin: 8px auto 0;
   }
 
   .pdetail-images-2col {
@@ -3131,5 +3156,165 @@ body {
     width: 150vw;
     max-width: none;
     margin-bottom: 2vh;
+  }
+}
+
+/* ========== IMAGE LIGHTBOX MODAL ========== */
+.lightbox-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lightbox-modal.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 15, 25, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  cursor: zoom-out;
+}
+
+.lightbox-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 92vw;
+  max-height: 92vh;
+  transform: scale(0.92) translateY(12px);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 16px;
+  pointer-events: none;
+}
+
+.lightbox-modal.active .lightbox-content {
+  transform: scale(1) translateY(0);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  pointer-events: auto;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.08) rotate(90deg);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.lightbox-image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
+  cursor: zoom-out;
+}
+
+.lightbox-image-wrapper img {
+  max-width: 90vw;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.lightbox-caption {
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 6px 18px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  pointer-events: auto;
+  display: none;
+}
+
+.lightbox-caption.has-text {
+  display: inline-block;
+}
+
+/* Clickable zoom indicator on project images */
+.pdetail-image img,
+.pdetail-image-card img,
+.pdetail-tutorial-image img,
+.pdetail-images-2col img,
+img.zoomable {
+  cursor: zoom-in;
+  transition: opacity 0.2s ease, transform 0.25s ease;
+}
+
+.pdetail-image:hover img,
+.pdetail-image-card:hover img,
+.pdetail-tutorial-image:hover img {
+  opacity: 0.94;
+}
+
+@media (max-width: 768px) {
+  .lightbox-close {
+    top: -8px;
+    right: -8px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .lightbox-image-wrapper {
+    border-radius: 14px;
+  }
+
+  .lightbox-image-wrapper img {
+    max-width: 92vw;
+    max-height: 78vh;
   }
 }

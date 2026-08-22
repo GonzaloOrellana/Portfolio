@@ -380,5 +380,65 @@ document.addEventListener('DOMContentLoaded', () => {
         initAnimations(activePage);
     }
 
+    // ========== IMAGE LIGHTBOX MODAL ==========
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxCloseBtn = document.querySelector('.lightbox-close');
+    const lightboxBackdrop = document.querySelector('.lightbox-backdrop');
+    const lightboxImgWrapper = document.querySelector('.lightbox-image-wrapper');
+
+    function openLightbox(img) {
+        if (!lightbox || !lightboxImg || !img) return;
+        
+        const src = img.currentSrc || img.src || img.getAttribute('data-src');
+        if (!src) return;
+
+        lightboxImg.src = src;
+        lightboxImg.alt = img.alt || 'Vista ampliada';
+
+        if (img.alt && img.alt.trim() !== '') {
+            lightboxCaption.textContent = img.alt;
+            lightboxCaption.classList.add('has-text');
+        } else {
+            lightboxCaption.textContent = '';
+            lightboxCaption.classList.remove('has-text');
+        }
+
+        lightbox.classList.add('active');
+        lightbox.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.remove('active');
+        lightbox.setAttribute('aria-hidden', 'true');
+        setTimeout(() => {
+            if (!lightbox.classList.contains('active')) {
+                lightboxImg.src = '';
+            }
+        }, 300);
+    }
+
+    if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeLightbox);
+    if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
+    if (lightboxImgWrapper) lightboxImgWrapper.addEventListener('click', closeLightbox);
+
+    // Keyboard support: Escape to close
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
+
+    // Click delegation for all project detail images and zoomable images
+    document.addEventListener('click', (e) => {
+        const targetImg = e.target.closest('.pdetail-image img, .pdetail-image-card img, .pdetail-tutorial-image img, .pdetail-images-2col img, img.zoomable');
+        if (targetImg) {
+            e.preventDefault();
+            openLightbox(targetImg);
+        }
+    });
+
     handleInitialRoute();
 });
