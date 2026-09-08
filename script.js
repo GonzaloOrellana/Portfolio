@@ -440,5 +440,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // ========== COURSES ACCORDION ==========
+    const coursesToggle = document.getElementById('courses-toggle-btn');
+    const coursesList = document.getElementById('courses-list');
+
+    if (coursesToggle && coursesList) {
+        coursesToggle.addEventListener('click', () => {
+            const isExpanded = coursesToggle.getAttribute('aria-expanded') === 'true';
+            coursesToggle.setAttribute('aria-expanded', !isExpanded);
+            coursesList.classList.toggle('open');
+        });
+    }
+
     handleInitialRoute();
 });
