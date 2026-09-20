@@ -117,28 +117,28 @@ body {
 .bg-glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(50px);
-  -webkit-filter: blur(50px);
-  opacity: 0.25;
+  filter: blur(60px);
+  -webkit-filter: blur(60px);
   transform: translate3d(0, 0, 0);
   pointer-events: none;
 }
 
 .glow-1 {
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, var(--blue-glow-1) 0%, rgba(96, 177, 255, 0.1) 70%, transparent 100%);
-  top: -200px;
-  left: -150px;
+  width: 750px;
+  height: 750px;
+  background: radial-gradient(circle, var(--blue-glow-1) 0%, rgba(96, 177, 255, 0.45) 45%, rgba(96, 177, 255, 0.18) 70%, transparent 100%);
+  top: -180px;
+  left: -120px;
+  opacity: 0.38;
 }
 
 .glow-2 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, var(--blue-glow-2) 0%, rgba(49, 154, 255, 0.1) 70%, transparent 100%);
+  background: radial-gradient(circle, var(--blue-glow-2) 0%, rgba(49, 154, 255, 0.25) 55%, transparent 100%);
   top: -100px;
   left: 250px;
-  opacity: 0.20;
+  opacity: 0.22;
 }
 
 /* Responsive Visibility Utils */
