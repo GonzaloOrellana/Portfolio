@@ -44,22 +44,50 @@ body {
   inset: 0;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
+  display: none;
+  content-visibility: hidden;
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.page.active,
+.page.exit {
+  display: flex;
+  content-visibility: visible;
 }
 
 .page.active {
   position: relative;
   opacity: 1;
   pointer-events: auto;
+  animation: pageFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .page.exit {
+  position: absolute;
+  inset: 0;
   opacity: 0;
   pointer-events: none;
+  animation: pageFadeOut 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pageFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 /* Utilities for structural z-index logic */
@@ -85,18 +113,21 @@ body {
   /* Allows clicks to fall through safely */
 }
 
-/* Specific glows */
+/* Specific glows - Optimized for mobile GPU */
 .bg-glow {
   position: absolute;
   border-radius: 50%;
-  filter: blur(140px);
+  filter: blur(50px);
+  -webkit-filter: blur(50px);
   opacity: 0.25;
+  transform: translate3d(0, 0, 0);
+  pointer-events: none;
 }
 
 .glow-1 {
   width: 700px;
   height: 700px;
-  background-color: var(--blue-glow-1);
+  background: radial-gradient(circle, var(--blue-glow-1) 0%, rgba(96, 177, 255, 0.1) 70%, transparent 100%);
   top: -200px;
   left: -150px;
 }
@@ -104,7 +135,7 @@ body {
 .glow-2 {
   width: 600px;
   height: 600px;
-  background-color: var(--blue-glow-2);
+  background: radial-gradient(circle, var(--blue-glow-2) 0%, rgba(49, 154, 255, 0.1) 70%, transparent 100%);
   top: -100px;
   left: 250px;
   opacity: 0.20;
@@ -3272,34 +3303,54 @@ body {
   }
 }
 
+/* ========== HERO ENTRANCE (CSS-ONLY FOR INSTANT MOBILE PAINT) ========== */
+.hero-enter {
+  animation: heroEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-enter.delay-100 {
+  animation-delay: 100ms;
+}
+
+.hero-enter.delay-200 {
+  animation-delay: 200ms;
+}
+
+@keyframes heroEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* ========== SCROLL REVEAL ANIMATIONS (FLOW) ========== */
 
 .reveal-up {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 .reveal-left {
   opacity: 0;
   transform: translateX(-40px);
   transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 .reveal-right {
   opacity: 0;
   transform: translateX(40px);
   transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 .reveal-scale {
   opacity: 0;
   transform: scale(0.9);
   transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 /* Activated State */

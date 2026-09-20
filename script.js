@@ -60,8 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const revealElements = page.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale');
         
         const revealOptions = {
-            threshold: 0.15, // 15% del elemento debe ser visible
-            rootMargin: "0px 0px -50px 0px" // Activa un poco antes de llegar abajo
+            threshold: 0.08, // Revela apenas entra en campo visual
+            rootMargin: "0px 0px 20px 0px" // Margen positivo para anticipar la animación en móviles
         };
 
         currentObserver = new IntersectionObserver(function(entries, observer) {
