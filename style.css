@@ -76,6 +76,7 @@ body {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -85,6 +86,7 @@ body {
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }
@@ -2503,8 +2505,8 @@ body {
   opacity: 0;
   overflow: hidden;
   transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.4s ease,
-              padding 0.4s ease;
+    opacity 0.4s ease,
+    padding 0.4s ease;
   padding: 0 20px;
 }
 
@@ -2532,20 +2534,43 @@ body {
   transform: translateY(0);
 }
 
-.courses-list.open .course-entry:nth-child(1) { transition-delay: 0.05s; }
-.courses-list.open .course-entry:nth-child(2) { transition-delay: 0.08s; }
-.courses-list.open .course-entry:nth-child(3) { transition-delay: 0.11s; }
-.courses-list.open .course-entry:nth-child(4) { transition-delay: 0.14s; }
-.courses-list.open .course-entry:nth-child(5) { transition-delay: 0.17s; }
-.courses-list.open .course-entry:nth-child(6) { transition-delay: 0.20s; }
-.courses-list.open .course-entry:nth-child(7) { transition-delay: 0.23s; }
-.courses-list.open .course-entry:nth-child(8) { transition-delay: 0.26s; }
+.courses-list.open .course-entry:nth-child(1) {
+  transition-delay: 0.05s;
+}
+
+.courses-list.open .course-entry:nth-child(2) {
+  transition-delay: 0.08s;
+}
+
+.courses-list.open .course-entry:nth-child(3) {
+  transition-delay: 0.11s;
+}
+
+.courses-list.open .course-entry:nth-child(4) {
+  transition-delay: 0.14s;
+}
+
+.courses-list.open .course-entry:nth-child(5) {
+  transition-delay: 0.17s;
+}
+
+.courses-list.open .course-entry:nth-child(6) {
+  transition-delay: 0.20s;
+}
+
+.courses-list.open .course-entry:nth-child(7) {
+  transition-delay: 0.23s;
+}
+
+.courses-list.open .course-entry:nth-child(8) {
+  transition-delay: 0.26s;
+}
 
 .course-entry:hover {
   background: rgba(0, 132, 255, 0.05);
 }
 
-.course-entry + .course-entry {
+.course-entry+.course-entry {
   border-top: 1px solid rgba(0, 0, 0, 0.04);
 }
 
@@ -2945,6 +2970,7 @@ body {
 }
 
 @media (max-width: 768px) {
+
   /* Mobile Performance: Optimización de GPU reduciendo blurs pesados (30px-50px) a 15px */
   .navbar,
   .mobile-menu,
@@ -3321,6 +3347,7 @@ body {
     opacity: 0;
     transform: translateY(16px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
