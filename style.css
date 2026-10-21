@@ -2379,21 +2379,37 @@ body {
   flex-direction: column;
   gap: 16px;
   position: relative;
+  max-height: 380px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
 }
 
-.experience-list::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  bottom: 10px;
-  left: 20px;
-  width: 2px;
-  background: rgba(0, 0, 0, 0.06);
+.experience-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.experience-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
 }
 
 .exp-item {
   position: relative;
   padding-left: 56px;
+}
+
+/* Línea de timeline por ítem (conecta con el siguiente) */
+.exp-item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 21px;
+  height: calc(100% + 16px);
+  width: 2px;
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .exp-icon {
