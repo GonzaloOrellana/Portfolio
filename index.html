@@ -1444,6 +1444,34 @@
                 <div class="projects-scroll-area">
                     <div class="projects-grid">
                         <!-- IMPACTO REAL -->
+                        <div class="project-card project-card--wip reveal-scale" data-category="real">
+                            <div class="project-image">
+                                <img loading="lazy"
+                                    data-src="images\axia\Mockups Claros\Póster · Axia · Ícono de app (iPhone 15 Pro Right) · Claro · 16_10 (1920×1200).png"
+                                    alt="Axia">
+                            </div>
+                            <img class="project-wip-tape" loading="lazy"
+                                src="images/axia/Cinta de precaución en construcción.png"
+                                alt="Proyecto en construcción">
+                            <div class="project-info">
+                                <div class="project-text">
+                                    <h3 class="project-name">Axia</h3>
+                                    <p class="project-desc">Progressive Web Application</p>
+                                </div>
+                                <div class="project-buttons">
+                                    <span class="project-detail-btn" data-page="detalle-axia" title="Ver detalles">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="project-card reveal-scale" data-category="real">
                             <div class="project-image">
                                 <img loading="lazy" data-src="images/miniaturas/Portada-UCM-Tracker.png"
@@ -1709,6 +1737,196 @@
                         </div>
 
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PAGE: DETALLE PROYECTO - AXIA ===== -->
+        <section id="detalle-axia" class="page">
+            <div class="pdetail-wrapper">
+                <button class="back-btn" data-page="proyectos">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Volver a Proyectos
+                </button>
+
+                <!-- Hero Header (2 columnas) -->
+                <div class="pdetail-hero reveal-up">
+                    <div class="pdetail-hero-left">
+                        <div class="pdetail-tags">
+                            <span class="pdetail-tag">Web App</span>
+                            <span class="pdetail-tag pdetail-tag-accent">Automatización</span>
+                        </div>
+                        <h2 class="pdetail-title">Axia</h2>
+                        <p class="pdetail-desc">Una aplicación a medida para un consultorio de kinesiología que recuerda
+                            los turnos por WhatsApp, recibe las confirmaciones de los pacientes y reúne la agenda y la
+                            historia clínica en un solo lugar.</p>
+                    </div>
+                    <div class="pdetail-meta">
+                        <div class="pdetail-meta-item">
+                            <span class="pdetail-meta-label">Servicio</span>
+                            <span class="pdetail-meta-value">Diseño UX/UI & Desarrollo Full Stack</span>
+                        </div>
+                        <div class="pdetail-meta-item">
+                            <span class="pdetail-meta-label">Categoría</span>
+                            <span class="pdetail-meta-value">Aplicación Web (PWA)</span>
+                        </div>
+                        <div class="pdetail-meta-item">
+                            <span class="pdetail-meta-label">Cliente</span>
+                            <span class="pdetail-meta-value">Consultorio de Kinesiología - Pablo</span>
+                        </div>
+                        <div class="pdetail-meta-item">
+                            <span class="pdetail-meta-label">Tecnologías</span>
+                            <span class="pdetail-meta-value">React · Supabase · WhatsApp Cloud API</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imagen Principal -->
+                <div class="pdetail-image reveal-scale delay-200">
+                    <img loading="lazy"
+                        data-src="images\axia\Mockups Claros\Póster · Axia · Mosaico diagonal · Claro · 24_9 (2400×900).png"
+                        alt="Axia - Vista Principal">
+                </div>
+
+                <!-- El Desafío (Texto + Imagen a la derecha) -->
+                <div class="pdetail-split reveal-up">
+                    <div class="pdetail-content">
+                        <h3>El Desafío</h3>
+                        <p>Todos los días, al terminar de atender, Pablo hacía lo mismo: abría la agenda, miraba quién
+                            venía al día siguiente y escribía por WhatsApp a cada paciente, uno por uno, para recordarle
+                            el turno. Después le tocaba esperar las respuestas, volver a escribirle a quien no
+                            contestaba y anotar quién confirmaba y quién no. Y aun así, de vez en cuando alguien se
+                            olvidaba, la hora quedaba vacía y no había tiempo de dársela a otro paciente.</p>
+                        <p>Era el trabajo que más le molestaba: no tenía nada que ver con la kinesiología, pero le
+                            robaba tiempo todos los días. A eso se sumaban las fichas en papel, repartidas entre
+                            carpetas y cuadernos. Pablo necesitaba una herramienta que se hiciera cargo de lo
+                            repetitivo, que fuera simple de usar desde el celular y que protegiera los datos de salud de
+                            sus pacientes, que la Ley 25.326 resguarda de forma especial.</p>
+                    </div>
+                    <div class="pdetail-image-card">
+                        <img loading="lazy"
+                            data-src="images\axia\Mockups Claros\Póster · Axia · Mano con iPhone · Pacientes · Claro · 4_5 (1728×2160).png"
+                            alt="Axia - Vista de pacientes en móvil">
+                    </div>
+                </div>
+
+                <!-- La Solución (Imagen a la izquierda + Texto a la derecha) -->
+                <div class="pdetail-split pdetail-split--reverse reveal-up">
+                    <div class="pdetail-image-card">
+                        <img loading="lazy"
+                            data-src="images\axia\Mockups Claros\Póster · Axia · iPhone 15 Pro Left · Claro · 4_5 (1600×2000).png"
+                            alt="Axia - Ícono de aplicación instalada">
+                    </div>
+                    <div class="pdetail-content">
+                        <h3>La Solución</h3>
+                        <p>Diseñé en Figma y desarrollé Axia alrededor de una idea: que Pablo no tenga que volver a
+                            recordarle un turno a nadie. Un día antes de cada sesión, el sistema le manda solo al
+                            paciente un mensaje de WhatsApp con la fecha, la hora y el consultorio. El paciente responde
+                            con un toque y su respuesta aparece en la agenda: el turno se pone verde si confirmó y, si
+                            canceló, Pablo lo ve marcado en rojo en la pantalla de inicio, con el horario ya libre y a
+                            tiempo de ofrecérselo a otro paciente.</p>
+                        <p>Además de los recordatorios, Axia reemplaza el papel. La ficha de cada paciente reúne su
+                            diagnóstico, la historia clínica con la escala de dolor (EVA) y una galería de fotos y
+                            estudios con comparación de antes y después. Al terminar una sesión, con un toque queda
+                            marcada como realizada, y programar un tratamiento completo lleva menos de un minuto. La app
+                            se instala en el celular como una app nativa.</p>
+                    </div>
+                </div>
+
+                <!-- Cómo funciona el recordatorio (3 pasos) -->
+                <div class="pdetail-content reveal-up">
+                    <h3>Cómo funciona el recordatorio</h3>
+                    <div class="pdetail-highlights pdetail-steps-3">
+                        <div class="pdetail-highlight pdetail-step-card">
+                            <div class="pdetail-step-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span class="pdetail-step-badge">Paso 1</span>
+                            </div>
+                            <h4>24 horas antes</h4>
+                            <p>Axia le envía al paciente un recordatorio por WhatsApp con la fecha, la hora y el
+                                consultorio. El mensaje nunca incluye datos clínicos.</p>
+                        </div>
+                        <div class="pdetail-highlight pdetail-step-card">
+                            <div class="pdetail-step-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                    <polyline points="9 10 11 12 15 8"></polyline>
+                                </svg>
+                                <span class="pdetail-step-badge">Paso 2</span>
+                            </div>
+                            <h4>El paciente responde</h4>
+                            <p>Toca <strong>Confirmo</strong> o <strong>Cancelo</strong>, sin escribir nada.</p>
+                        </div>
+                        <div class="pdetail-highlight pdetail-step-card">
+                            <div class="pdetail-step-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <span class="pdetail-step-badge">Paso 3</span>
+                            </div>
+                            <h4>La agenda se actualiza sola</h4>
+                            <p>El turno confirmado se pone verde. El cancelado libera el horario y le avisa a Pablo en
+                                la
+                                pantalla de inicio.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Imágenes en 2 columnas después de los pasos -->
+                <div class="pdetail-images-2col reveal-scale delay-200">
+                    <div class="pdetail-image-card">
+                        <img loading="lazy"
+                            data-src="images/axia/Mockups Claros/Póster · Axia · MacBook Pro 16 · Claro · 5_4 (3750×3000).png"
+                            alt="Axia - Vista de escritorio en MacBook Pro">
+                    </div>
+                    <div class="pdetail-image-card">
+                        <img loading="lazy"
+                            data-src="images/axia/Mockups Claros/Póster · Axia · Pantallas flotantes 3D · 5_4 (1920×1536).png"
+                            alt="Axia - Pantallas flotantes 3D">
+                    </div>
+                </div>
+
+                <!-- Seguridad y Resultados -->
+                <div class="pdetail-content reveal-up">
+                    <h3>Seguridad y Resultados</h3>
+                    <p>Como se trata de información de salud, el sistema se pensó desde el principio para cuidar los
+                        datos de cada paciente: los estudios y archivos son privados y se abren únicamente con enlaces
+                        temporales, la sesión se cierra sola por inactividad, todos los días se guardan copias de
+                        respaldo cifradas y las evoluciones clínicas no se pueden editar ni borrar una vez cargadas.
+                        Además, los mensajes de WhatsApp nunca incluyen datos médicos, solo la información del turno.
+                    </p>
+                    <p>Con Axia funcionando en el consultorio, los recordatorios salen solos y las respuestas llegan
+                        directo a la agenda sin que Pablo tenga que escribir un solo mensaje manual. Recuperó el tiempo
+                        que todos los días le dedicaba a confirmar turnos, se entera a tiempo de cada cancelación para
+                        reacomodar la agenda y lleva la historia clínica de todos sus pacientes ordenada en el bolsillo.
+                    </p>
+                </div>
+
+                <!-- Llamado a la acción final -->
+                <div class="pdetail-cta-section reveal-up">
+                    <h3>¿Seguís recordando turnos a mano?</h3>
+                    <p>Si tu negocio depende de turnos y querés que la agenda trabaje por vos, hablemos.</p>
+                    <a href="#contacto" class="sdetail-cta" data-page="contacto">
+                        Hablemos de tu proyecto
+                        <span class="cta-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -2543,7 +2761,8 @@
                                 <li><strong>Paso 1:</strong> Abrir en Safari y ingresá a <a
                                         href="https://focus-app-gamma-flax.vercel.app/" target="_blank"
                                         rel="noopener noreferrer">Focus</a> desde el navegador nativo Safari.</li>
-                                <li><strong>Paso 2:</strong> Toca los 3 “puntitos” en la barra de navegación inferior del
+                                <li><strong>Paso 2:</strong> Toca los 3 “puntitos” en la barra de navegación inferior
+                                    del
                                     iPhone, presioná el botón de <strong>Compartir</strong> (icono de cuadrado con una
                                     flecha hacia arriba).</li>
                                 <li><strong>Paso 3:</strong> Haz click en <strong>“Ver más”</strong> y desplázate hacia
@@ -2551,7 +2770,8 @@
                                     con el icono de un cuadrado con un símbolo +).</li>
                                 <li><strong>Paso 4:</strong> Confirma y toca <strong>"Agregar"</strong> (o
                                     <em>"Add"</em>) en la esquina superior derecha. El icono de Focus se sumará a tu
-                                    pantalla de inicio.</li>
+                                    pantalla de inicio.
+                                </li>
                             </ol>
                         </div>
                         <div class="pdetail-tutorial-image">

@@ -971,6 +971,24 @@ body {
   object-fit: cover;
 }
 
+/* Proyecto en construcción: cinta encima de toda la tarjeta */
+.project-card--wip {
+  position: relative;
+}
+
+.project-card--wip>img.project-wip-tape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1.3);
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.35));
+}
+
 .project-placeholder {
   display: flex;
   align-items: center;
@@ -1826,6 +1844,30 @@ body {
   color: #444;
 }
 
+/* Split block: Text + Image side by side */
+.pdetail-split {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  align-items: center;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.pdetail-split--reverse {
+  grid-template-columns: 0.8fr 1.2fr;
+}
+
+.pdetail-split--reverse .pdetail-content {
+  text-align: right;
+}
+
+.pdetail-split .pdetail-content {
+  margin: 0;
+  max-width: none;
+}
+
 /* Highlights Grid */
 .pdetail-highlights {
   display: grid;
@@ -1867,6 +1909,93 @@ body {
   font-size: 14.5px;
   line-height: 1.6;
   color: #555;
+}
+
+/* 3-Step Flow Strip (Axia) */
+.pdetail-steps-3 {
+  margin-top: 0;
+  gap: 32px;
+  filter:
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.85))
+    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.6))
+    drop-shadow(0 0 1px rgba(0, 110, 230, 0.12))
+    drop-shadow(0 8px 20px rgba(0, 0, 0, 0.035));
+}
+
+.pdetail-step-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.5);
+}
+
+.pdetail-step-card:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 32px;
+  height: 34px;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 2px 8px rgba(255, 255, 255, 0.5);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 34' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,0 A12,12 0 0,0 12,12 L20,12 A12,12 0 0,0 32,0 L32,34 A12,12 0 0,0 20,22 L12,22 A12,12 0 0,0 0,34 Z'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 34' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0,0 A12,12 0 0,0 12,12 L20,12 A12,12 0 0,0 32,0 L32,34 A12,12 0 0,0 20,22 L12,22 A12,12 0 0,0 0,34 Z'/%3E%3C/svg%3E");
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pdetail-step-icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  color: var(--blue-primary);
+}
+
+.pdetail-step-icon svg {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  filter: drop-shadow(0 4px 8px rgba(0, 132, 255, 0.2));
+}
+
+.pdetail-step-badge {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--blue-primary);
+  background: none;
+  padding: 0;
+}
+
+/* Captioned full-width image */
+.pdetail-image--captioned {
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.35);
+  overflow: hidden;
+}
+
+.pdetail-image--captioned img {
+  border-radius: 16px 16px 0 0;
+}
+
+.pdetail-image-caption {
+  font-size: 13.5px;
+  color: #555;
+  text-align: center;
+  padding: 12px 20px 14px;
+  line-height: 1.5;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 /* Tutorial Installation Cards */
@@ -3246,7 +3375,9 @@ body {
     gap: 32px;
   }
 
-  .pdetail-hero {
+  .pdetail-hero,
+  .pdetail-split,
+  .pdetail-split--reverse {
     grid-template-columns: 1fr;
     gap: 24px;
   }
@@ -3258,6 +3389,12 @@ body {
   .pdetail-highlights,
   .pdetail-highlights-2 {
     grid-template-columns: 1fr;
+  }
+
+  .pdetail-step-card:not(:last-child)::after {
+    top: calc(100% + 16px);
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
   }
 
   .pdetail-tutorial-card {
@@ -3274,6 +3411,11 @@ body {
   .pdetail-images-2col {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
+  }
+
+  #detalle-axia .pdetail-images-2col {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .pdetail-cta-section {
@@ -3686,5 +3828,27 @@ img.zoomable {
   .lightbox-image-wrapper img {
     max-width: 92vw;
     max-height: 78vh;
+  }
+}
+
+
+/* ========== PROJECT DETAIL: más ancho en escritorio ========== */
+@media (min-width: 1024px) {
+
+  .pdetail-wrapper,
+  .pdetail-hero,
+  .pdetail-image,
+  .pdetail-images-2col,
+  .pdetail-content,
+  .pdetail-split,
+  .pdetail-highlights,
+  .pdetail-highlights-2,
+  .pdetail-tutorial-stack,
+  .pdetail-cta-section {
+    max-width: 1100px;
+  }
+
+  .pdetail-images-2col.gallery-small {
+    max-width: 820px;
   }
 }
