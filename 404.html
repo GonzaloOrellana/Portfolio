@@ -69,7 +69,7 @@
                 <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
             </svg>
         </a>
-        <button id="menu-btn" class="hamburger-btn mobile-only" aria-label="Abrir menú">
+        <button id="menu-btn" class="hamburger-btn mobile-only" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="4" y1="12" x2="20" y2="12"></line>
                 <line x1="4" y1="6" x2="20" y2="6"></line>
@@ -78,8 +78,64 @@
         </button>
     </nav>
 
+    <!-- Mobile Menu Overlay -->
+    <div id="menu-overlay" class="menu-overlay"></div>
+
+    <!-- Mobile Side Menu -->
+    <aside id="mobile-menu" class="mobile-menu" aria-hidden="true">
+        <button id="close-menu-btn" class="close-btn" aria-label="Cerrar menú">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <ul class="mobile-links">
+            <li>
+                <a href="index.html#home" class="nav-item">
+                    <span class="nav-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </span>
+                    Inicio
+                </a>
+            </li>
+            <li>
+                <a href="index.html#sobre-mi" class="nav-item">
+                    <span class="nav-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </span>
+                    Sobre Mí
+                </a>
+            </li>
+            <li>
+                <a href="index.html#servicios" class="nav-item">
+                    <span class="nav-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                    </span>
+                    Servicios
+                </a>
+            </li>
+            <li>
+                <a href="index.html#proyectos" class="nav-item">
+                    <span class="nav-icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 12 12 17 22 12"></polyline><polyline points="2 17 12 22 22 17"></polyline></svg>
+                    </span>
+                    Proyectos
+                </a>
+            </li>
+            <li style="margin-top: 8px;">
+                <a href="index.html#contacto" class="navbar-cta" style="width: fit-content;">
+                    Hablemos
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
     <div class="not-found-wrapper">
-        <img src="images/404-bg.png" alt="404" class="error-404-image">
+        <img src="images/404-bg.webp" alt="404" class="error-404-image">
         <p class="not-found-text">Página no encontrada</p>
     </div>
             
@@ -104,5 +160,6 @@
                     </svg>
                 </div>
             </div>
+    <script src="script.js?v=2"></script>
 </body>
 </html>
