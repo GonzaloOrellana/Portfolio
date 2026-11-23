@@ -29,10 +29,11 @@ body {
   /* Core Technical Specs */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
-  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
-  overflow: hidden;
+  overflow-x: clip;
+  padding-bottom: env(safe-area-inset-bottom);
   display: flex;
   flex-direction: column;
 }
@@ -54,8 +55,7 @@ body {
   display: none;
   content-visibility: hidden;
   flex-direction: column;
-  overflow-y: auto;
-  overflow-x: hidden;
+  scroll-margin-top: calc(96px + env(safe-area-inset-top));
 }
 
 .page.active,
@@ -66,6 +66,7 @@ body {
 
 .page.active {
   position: relative;
+  flex: 1;
   opacity: 1;
   pointer-events: auto;
   animation: pageFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -260,6 +261,8 @@ body {
 
 /* Strong Liquid Glass Navbar */
 .navbar {
+  position: sticky;
+  top: clamp(12px, 2vh, 18px);
   margin: clamp(12px, 2vh, 18px) auto 0;
   width: fit-content;
   flex-shrink: 0;
@@ -800,37 +803,15 @@ body {
   }
 }
 
-/* Specific Page Overrides */
-#proyectos.page,
-#sobre-mi.page,
-#servicios.page,
-#servicio-diseno.page,
-#servicio-web.page,
-#servicio-video.page,
-#detalle-axia.page,
-#detalle-churn.page,
-#detalle-aisha.page,
-#detalle-pablo.page,
-#detalle-zalostore.page,
-#detalle-generador.page,
-#detalle-inventario.page,
-#detalle-focus.page,
-#detalle-ucm-tracker.page {
-  overflow: hidden;
-  /* Prevent full-page scrolling — scroll is handled internally by wrappers */
-}
-
 /* ========== PROJECTS SECTION ========== */
 .projects-wrapper {
   max-width: var(--container-max);
   width: 100%;
   margin: 0 auto;
-  padding: 2vh var(--container-pad-x);
-  /* Padding simétrico vertical y horizontal */
+  padding: 2vh var(--container-pad-x) 6vh;
   display: flex;
   flex-direction: column;
   gap: 2vh;
-  height: 100%;
 }
 
 .projects-header {
@@ -892,23 +873,9 @@ body {
     0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-/* Projects Scroll Area - Clean transparent scroll container with smooth fade mask */
+/* Projects Scroll Area */
 .projects-scroll-area {
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
   padding: 8px 0 4vh;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 28px, black calc(100% - 24px), transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 28px, black calc(100% - 24px), transparent 100%);
-}
-
-/* Hide Scrollbar for Webkit */
-.projects-scroll-area::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
 }
 
 /* Projects Grid - 3 columns on desktop/notebook */
@@ -1094,7 +1061,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 2.5vh;
-  height: 100%;
   justify-content: flex-start;
 }
 
@@ -1236,20 +1202,10 @@ body {
   max-width: var(--container-max);
   width: 100%;
   margin: 0 auto;
-  padding: 2vh var(--container-pad-x) 4vh;
+  padding: 2vh var(--container-pad-x) 6vh;
   display: flex;
   flex-direction: column;
   gap: 32px;
-  height: 100%;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.sdetail-wrapper::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
 }
 
 /* Back Button */
@@ -1632,16 +1588,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  height: 100%;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.pdetail-wrapper::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
 }
 
 /* Hero Section */
@@ -2146,11 +2092,10 @@ body {
   max-width: var(--container-max);
   width: 100%;
   margin: 0 auto;
-  padding: 2vh var(--container-pad-x);
+  padding: 2vh var(--container-pad-x) 6vh;
   display: flex;
   flex-direction: column;
   gap: 2vh;
-  height: 100%;
 }
 
 .about-header {
@@ -2170,16 +2115,16 @@ body {
 }
 
 .about-grid {
-  flex: 1;
-  min-height: 0;
   display: grid;
   grid-template-columns: 350px 1fr;
   gap: 32px;
-  overflow: hidden;
+  align-items: start;
 }
 
 /* Left Col: Profile Card */
 .about-profile {
+  position: sticky;
+  top: calc(88px + 2vh);
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -2237,25 +2182,13 @@ body {
   line-height: 1.6;
 }
 
-/* Right Col: Content Scroll Area */
+/* Right Col: Content Area */
 .about-content {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  overflow-y: auto;
   padding-top: 8px;
-  padding-right: 12px;
   padding-bottom: 4vh;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 28px, black calc(100% - 24px), transparent 100%);
-  mask-image: linear-gradient(to bottom, transparent 0%, black 28px, black calc(100% - 24px), transparent 100%);
-}
-
-.about-content::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
 }
 
 /* Glass Content Panel */
@@ -3042,29 +2975,17 @@ body {
   .about-grid {
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
     gap: 24px;
     padding-top: 8px;
     padding-bottom: 24px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 28px, black calc(100% - 20px), transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 28px, black calc(100% - 20px), transparent 100%);
-  }
-
-  .about-grid::-webkit-scrollbar {
-    display: none;
-    width: 0;
-    height: 0;
   }
 
   .about-content {
-    overflow-y: visible;
-    padding-right: 0;
     padding-bottom: 24px;
   }
 
   .about-profile {
+    position: static;
     flex-direction: row;
     align-items: center;
     text-align: left;
@@ -3091,23 +3012,6 @@ body {
 
 @media (max-width: 768px) {
 
-  /* Scroll nativo en mobile + respeto de safe areas (iOS Safari / Liquid Glass) */
-  body {
-    height: auto;
-    min-height: 100dvh;
-    overflow-x: clip;
-    overflow-y: visible;
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-
-  #app-container .page {
-    scroll-margin-top: calc(90px + env(safe-area-inset-top));
-  }
-
-  #app-container .page.active {
-    overflow: visible;
-  }
-
   /* Mobile Performance: Optimización de GPU reduciendo blurs pesados (30px-50px) a 15px */
   .navbar,
   .mobile-menu,
@@ -3130,7 +3034,6 @@ body {
   }
 
   .navbar {
-    position: sticky;
     top: calc(12px + env(safe-area-inset-top));
     width: calc(100% - 24px);
     justify-content: space-between;
@@ -3147,7 +3050,6 @@ body {
     padding-bottom: 32px;
     text-align: center;
     justify-content: flex-start;
-    overflow: visible;
   }
 
   .hero-left {
@@ -3217,16 +3119,11 @@ body {
   /* Projects Mobile */
   .projects-wrapper {
     padding: 2vh var(--container-pad-x);
-    height: auto;
-    overflow: visible;
   }
 
   .projects-scroll-area {
     padding: 4px 0 32px;
     margin-bottom: 0;
-    overflow: visible;
-    -webkit-mask-image: none;
-    mask-image: none;
   }
 
   .projects-grid {
@@ -3258,8 +3155,6 @@ body {
   /* Services Mobile */
   .services-wrapper {
     padding: 2vh var(--container-pad-x) 4vh;
-    height: auto;
-    overflow: visible;
   }
 
   .services-header {
@@ -3314,8 +3209,6 @@ body {
   .sdetail-wrapper {
     padding: 2vh var(--container-pad-x) 6vh;
     gap: 24px;
-    height: auto;
-    overflow: visible;
   }
 
   .sdetail-icon svg {
@@ -3374,8 +3267,6 @@ body {
   .pdetail-wrapper {
     padding: 2vh var(--container-pad-x) 6vh;
     gap: 32px;
-    height: auto;
-    overflow: visible;
   }
 
   .pdetail-hero,
@@ -3431,10 +3322,8 @@ body {
 
   /* About Mobile */
   .about-wrapper {
-    height: auto;
     display: flex;
     flex-direction: column;
-    overflow: visible;
   }
 
   .about-header {
@@ -3444,19 +3333,15 @@ body {
 
   .about-grid {
     grid-template-columns: 1fr;
-    overflow: visible;
     display: flex;
     flex-direction: column;
     gap: 16px;
     padding-top: 12px;
     padding-bottom: 32px;
-    -webkit-mask-image: none;
-    mask-image: none;
   }
 
   .about-content {
-    overflow-y: visible;
-    padding-right: 0;
+    padding-bottom: 24px;
   }
 
   .about-profile {
