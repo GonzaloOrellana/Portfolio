@@ -2187,6 +2187,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-width: 0;
   padding-top: 8px;
   padding-bottom: 4vh;
 }
@@ -2205,6 +2206,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-width: 0;
 }
 
 .about-panel h4 {
@@ -2433,6 +2435,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 12px;
   margin-bottom: 4px;
 }
 
@@ -2975,6 +2979,7 @@ body {
   .about-grid {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 24px;
     padding-top: 8px;
     padding-bottom: 24px;
@@ -3342,6 +3347,10 @@ body {
 
   .about-content {
     padding-bottom: 24px;
+  }
+
+  .about-panel {
+    padding: 24px 20px;
   }
 
   .about-profile {
