@@ -1744,6 +1744,23 @@ body {
   object-fit: contain;
 }
 
+#detalle-pablo .pdetail-image img,
+#detalle-pablo .pdetail-image video {
+  width: 100%;
+  aspect-ratio: auto;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+#detalle-pablo .pdetail-image-card img {
+  aspect-ratio: 4 / 3;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 /* Content blocks */
 .pdetail-content {
   width: 100%;
@@ -3316,7 +3333,8 @@ body {
     gap: 12px;
   }
 
-  #detalle-axia .pdetail-images-2col {
+  #detalle-axia .pdetail-images-2col,
+  #detalle-pablo .pdetail-images-2col {
     grid-template-columns: 1fr;
     gap: 20px;
   }
@@ -3664,6 +3682,7 @@ body {
 
 /* Clickable zoom indicator on project images */
 .pdetail-image img,
+.pdetail-image video,
 .pdetail-image-card img,
 .pdetail-tutorial-image img,
 .pdetail-tutorial-image video,
@@ -3674,6 +3693,7 @@ img.zoomable {
 }
 
 .pdetail-image:hover img,
+.pdetail-image:hover video,
 .pdetail-image-card:hover img,
 .pdetail-tutorial-image:hover img,
 .pdetail-tutorial-image:hover video {

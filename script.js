@@ -565,7 +565,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('click', (e) => {
-        const targetMedia = e.target.closest('.pdetail-image img, .pdetail-image-card img, .pdetail-tutorial-image img, .pdetail-tutorial-image video, .pdetail-images-2col img, img.zoomable');
+        const targetMedia = e.target.closest('.pdetail-image img, .pdetail-image video, .pdetail-image-card img, .pdetail-tutorial-image img, .pdetail-tutorial-image video, .pdetail-images-2col img, img.zoomable');
         if (targetMedia) {
             e.preventDefault();
             openLightbox(targetMedia);
